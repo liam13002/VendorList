@@ -63,10 +63,13 @@ for record in csvfile:
 print(custdict)
 
 # iternate through the dictionary and write to the output file
-outfile.write("Name, Email, Phone")
+outfile.write("Name, Email, Phone\n")
 for key in list(custdict.keys()):
-    outfile.write(custdict['fname']+custdict['lname'],',', custdict['email'],',', custdict['phone'] )
-
+    outfile.write(custdict['fname'])
+    outfile.write(custdict['lname'])
+    outfile.write(custdict['email'])
+    outfile.write(custdict['phone'])
+    outfile.write('\n')
 
 
 
