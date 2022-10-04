@@ -31,7 +31,7 @@ infile = open('VendorList.csv', 'r')
 
 # create a csv object from the file object
 
-csvfile = list(csv.reader(infile, delimiter=","))
+csvfile = csv.reader(infile, delimiter=",")
 
 
 # create an output file
@@ -43,36 +43,28 @@ outfile = open('marketinglistFINAL.csv', 'w')
 # create an empty dictionary
 
 custdict = {}
-customer = 1
 
  # iterate through the csv object
 
+next(csvfile)
 
 for record in csvfile:
+        fullname = record[1] + ' ' + record[2]
+        emailaddress = record[4]
+        phonenumber = record[5]
 
-    
-        custdict['fname'] = csvfile[customer][1]
-        custdict['lname'] = csvfile[customer][2]
-        custdict['email'] = csvfile[customer][4]
-        custdict['phone'] = csvfile[customer][5]
-        
-    
+
+        custdict[fullname] = {"email": emailaddress, "phone": phonenumber}
 
 # print the dictionary after the loop is finished
-
 print(custdict)
 
 # iternate through the dictionary and write to the output file
+
 outfile.write("Name, Email, Phone\n")
-for key in list(custdict.keys()):
-    outfile.write(custdict['fname'])
-    outfile.write(custdict['lname'])
-    outfile.write(custdict['email'])
-    outfile.write(custdict['phone'])
-    outfile.write('\n')
-
-
-
+for key in custdict:
+    outfile.write(key +',' +custdict[key]['email'] +','+custdict[key]['phone']+'\n')
+    
 # close your output file
-
+outfile.close()
 #outfile.close()
